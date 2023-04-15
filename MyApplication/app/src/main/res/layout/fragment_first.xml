@@ -4,25 +4,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".FirstFragment"
+    android:paddingTop="100dp">
 
-    <TextView
-        android:id="@+id/textview_first"
+    <LinearLayout
+        android:id="@+id/search_viewer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:background="#3e3e3e"
+
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keyword*"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/input_keyword" />
+
+        <EditText
+            android:id="@+id/input_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="any keywords ..."
+            android:inputType="text"
+            android:minHeight="60dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9FA8DA"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance (Miles)*"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/input_distance"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/input_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="10"
+            android:hint="10"
+            android:inputType="number"
+            android:minHeight="60dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9FA8DA"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category*"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/category" />
+
+        <Spinner
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Auto-detect"
+            android:minHeight="48dp"
+            android:paddingBottom="12dp"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/label_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Location*"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/input_location" />
+
+            <TextView
+                android:id="@+id/label_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto-detect"
+                android:textColor="#aaaaaa"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/input_location" />
+
+            <Switch
+                android:id="@+id/auto_detect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/input_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type an address or a region"
+            android:minHeight="60dp"
+            android:textColor="@color/white"
+            android:textColorHint="#9FA8DA"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:backgroundTint="#d29014"
+                android:contentDescription="Submit"
+                android:minWidth="128dp"
+                android:minHeight="48dp"
+                android:text="submit"></Button>
+
+            <Button
+                android:id="@+id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:backgroundTint="#5c93b7"
+                android:contentDescription="Clear"
+                android:minWidth="128dp"
+                android:minHeight="48dp"
+                android:text="clear"></Button>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loading_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        android:layout_marginTop="276dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
+    <LinearLayout
+        android:id="@+id/result_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/result_page" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

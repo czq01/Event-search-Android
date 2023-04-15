@@ -9,4 +9,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="haha">\"\"</string>
+    <string-array name="options_array">
+        <item>All</item>
+        <item>Music</item>
+        <item>Sport</item>
+        <item>Arts</item>
+        <item>Theatre</item>
+        <item>Film</item>
+        <item>Miscellaneous</item>
+    </string-array>
 </resources>
