@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/result_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minHeight="128dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_radius"
+        android:padding="9dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:id="@+id/event_image"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/border_radius"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:minHeight="30dp">
+                <com.myapplication.myapplication.AutoScrollingTextView
+                    android:id="@+id/event_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:maxWidth="140dp"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:text="Long Name Long name Long name"
+                    android:textColor="#cbcbcb"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/event_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mm/dd/yyyy"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    android:gravity="end"
+                    android:textColor="#aaaaaa"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="30dp">
+                <com.myapplication.myapplication.AutoScrollingTextView
+                    android:id="@+id/event_venue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="140dp"
+                    android:textSize="20sp"
+                    android:text="Long Venue Long Venue Long"
+                    android:layout_weight="1"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:textColor="#aaaaaa"/>
+                <TextView
+                    android:id="@+id/event_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#aaaaaa"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    android:gravity="end"
+                    android:text="hh:mm:ss"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="30dp">
+                <TextView
+                    android:id="@+id/event_cactegory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:maxWidth="160dp"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:textColor="#aaaaaa"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</LinearLayout>
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

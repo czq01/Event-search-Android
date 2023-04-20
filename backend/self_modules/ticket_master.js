@@ -40,8 +40,8 @@ class TicketMasterAPI {
             let json = JSON.parse("{}");
             json.Id = ele.id;
             json.VenueId = ele._embedded.venues[0].id;
-            json.Date = ele.dates.start.localDate + ' ';
-                 + (ele.dates.start.localTime?ele.dates.start.localTime:'');
+            json.Date = ele.dates.start.localDate;
+            json.Time = (ele.dates.start.localTime?ele.dates.start.localTime:'TBD');
             json.Icon = ele.images[0].url;
             json.Event = ele.name;
             json.Genre = ele.classifications[0].segment.name;

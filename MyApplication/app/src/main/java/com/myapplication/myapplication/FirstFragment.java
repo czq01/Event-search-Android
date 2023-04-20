@@ -1,14 +1,18 @@
 package com.myapplication.myapplication;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.myapplication.myapplication.databinding.FragmentFirstBinding;
+import com.myapplication.myapplication.detailpage.TabActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +56,7 @@ public class FirstFragment extends Fragment {
         return binding.getRoot();
     }
     @Override
-    public void onDestroyView() {
+     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
@@ -108,8 +113,10 @@ public class FirstFragment extends Fragment {
                 }
                 String url = String.format(
                         "http://nodeeventappp.us-west-2.elasticbeanstalk.com/submit_form?keyword=%s&distance=%s&category=%s&location=%s",
-                        keyword, distance, category, autoDetect? "auto-detect":location
+//                        "http://192.168.31.204:3000/submit_form?keyword=%s&distance=%s&category=%s&location=%s",
+                        keyword, distance, category.equals("All")?"Default":category, autoDetect? "auto-detect":location
                 );
+                Log.d("TargetUrl", url);
                 binding.searchViewer.setVisibility(View.GONE);
                 binding.loadingView.setVisibility(View.VISIBLE);
                 OnSubmitForm(url);
@@ -149,15 +156,14 @@ public class FirstFragment extends Fragment {
                         displayResults(response);
                     }
                 },
-
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Query Error
                         errorHandler(error);
+                        Log.d("onErr", error.toString());
                     }
                 });
-
         // Add the request to the RequestQueue.
         req.add(stringRequest);
     }
@@ -174,10 +180,37 @@ public class FirstFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ResultItemAdapter adapter = new ResultItemAdapter(resultItems);
-
+        EventItemAdapter adapter = new EventItemAdapter(getContext(), itemArr);
+        ListView view = getView().findViewById(R.id.list_views);
+        view.setAdapter(adapter);
+        setItemClickEvent(itemArr, view);
         binding.loadingView.setVisibility(View.GONE);
         binding.resultContainer.setVisibility(View.VISIBLE);
+    }
+
+    public void setItemClickEvent(List<EventItem> itemArr, ListView view) {
+        Log.d("setItemClickEvent", "Setting item click event");
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                EventItem item = itemArr.get(pos);
+                String venueID = item.VenueId;
+                String eventID = item.Id;
+                String eventName = item.Event;
+                Log.d("onItemClick", "Clicked");
+                String url = String.format("http://nodeeventappp.us-west-2.elasticbeanstalk.com/details?eid=%s&vid=%s",
+                                            eventID, venueID);
+                onGetDetail(url, eventName);
+            }
+        });
+    }
+
+    public void onGetDetail(String url, String name) {
+        Log.d("onGetDetail", "Starting DetailsActivity");
+        Intent intent = new Intent(getContext(), TabActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("name", name);
+        startActivity(intent);
     }
     
     public void errorHandler(VolleyError error) {

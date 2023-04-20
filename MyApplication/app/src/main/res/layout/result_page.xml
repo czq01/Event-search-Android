@@ -31,9 +31,8 @@
                 android:textColor="@color/black" />
     </LinearLayout>
 
-
-
-    <ScrollView
+    <ListView
+        android:id="@+id/list_views"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,22 +41,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TableLayout
-            android:id="@+id/result_table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@android:color/darker_gray"
-            android:padding="16dp"
-            android:showDividers="middle"
-            android:stretchColumns="*">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view">
-
-            </androidx.recyclerview.widget.RecyclerView>
-        </TableLayout>
-    </ScrollView>
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:divider="@null"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

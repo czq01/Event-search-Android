@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
             app:tabGravity="fill"
+
             app:tabMode="fixed" />
 
     </com.google.android.material.appbar.AppBarLayout>
