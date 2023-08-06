@@ -1,6 +1,6 @@
 # Event-search-Android
 
-This is a Android App Project of course CSCI-571 USC.
+This is a Android App Project of WebTechnology course (USC CSCI-571).
 
 ## Introduction
 
